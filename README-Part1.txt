@@ -42,3 +42,4 @@ method to respond to each of these.
 
 Question 1
 What are some unintended issues that can occur with the chatbot?
+A unintended issue that can occur within the chatbot is if someone says a statement such as "Overwatch" with nothing before it. Due to the fact that I have it greater than 0 you cannot just say the statement.

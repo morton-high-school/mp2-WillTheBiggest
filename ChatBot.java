@@ -15,24 +15,33 @@ public class ChatBot{
   */
   public String getResponse(String statement){
     String response = "";
-    if(statement.indexOf("no")>=0){
+    statement.trim();
+    if(findKeyword(statement, "no", 0)>=0){
       response = "Why so negative?";
-      statement.trim();
-      statement.findKeyword(statement, "no", 0)>= 0;
-    }else if(findKeyword(statement,"mother", 0 )>= 0; ||   findKeyword(statement,"father",0 )>= 0;||  findKeyword(statement,"sister",0 )>= 0; ||  findKeyword(statement,"brother",0 )>= 0;){
+    
+    }else if(findKeyword(statement,"mother", 0 )> -1 ||   findKeyword(statement,"father",0 )> -1||  findKeyword(statement,"sister",0 )> -1 ||  findKeyword(statement,"brother",0 )> -1){
       response = "Tell me more about your family.";
-    }else if( findKeyword(statement,"dog",0 )>= 0; ||   findKeyword(statement,"cat",0 )>= 0;){
+    
+    }else if( findKeyword(statement,"dog",0 )> -1 ||   findKeyword(statement,"cat",0 )> -1){
       response = "Tell me more about your pets";
-    }else if( findKeyword(statement,"Zeller",0 )>= 0; ||  findKeyword(statement,"zeller",0 )>= 0;){
+    
+    }else if( findKeyword(statement,"Zeller",0 )> -1 ||  findKeyword(statement,"zeller",0 )> -1){
       response = "What a cool fella";
+    
     }else if(statement.length() == 0){
     response = "Please say somthing bud!";
-    }else if(findKeyword(statement,"help",0 )>= 0;){
+    
+    }else if(findKeyword(statement,"help",0 )> -1){
     response = "What do you want";
-    }else if(findKeyword(statement,"question",0 )>= 0;){
+    
+    }else if(findKeyword(statement,"question",0 )> -1){
     response = "Whats your favorite color";
-    }else if( findKeyword(statement,"Overwatch",0 )>= 0;){
+    
+    }else if(findKeyword(statement,"Overwatch",0 )> -1 ){
     response = "You need to take a little walk to the shower";
+    
+    }else if(findKeyword(statement,"I want to",0) > -1){
+    response = transformIWantToStatement(statement);
     }else{
       response = getRandomResponse();
     }

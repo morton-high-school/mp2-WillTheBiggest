@@ -46,8 +46,11 @@ public class ChatBot{
     }else if(findKeyword(statement,"you", 0) > -1  && findKeyword(statement,"me",0) > -1 ) {
     response = transformYouMeStatement(statement);
     
-    }else if(findKeyword(statement,"I want something", 0) > -1){
+    }else if(findKeyword(statement,"I want", 0) > -1){
     response = transformIWantStatement(statement);
+
+    }else if(findKeyword(statement,"I",0 )> -1 &&  findKeyword(statement,"you",0 )> -1){
+      response = transformIYouStatement(statement);
 
     }else{
       response = getRandomResponse();
@@ -177,7 +180,7 @@ public class ChatBot{
 
 		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
 		return "What makes you think that I " + restOfStatement + " you?";
-	
+  }
 
   private String transformIWantStatement(String statement){
 		//  Remove the final period, if there is one
@@ -188,6 +191,22 @@ public class ChatBot{
 		}
 		int psn = findKeyword(statement, "I want", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";}
+		return "Would you really be happy if you had " + restOfStatement + "?";
+    }
+  
+   private String transformIYouStatement(String statement){
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals(".")){
+			statement = statement.substring(0, statement.length() - 1);
+		}
+		int psnofme = findKeyword(statement, "I", 0);
+    int psnOFYou = findKeyword(statement,"you",0);
+  
+		String restOfStatement = statement.substring(psn + 1).trim(); 
+    
+    restOfStatement =  restOfStatement + statement.substring(psn + statement.length).trim();
+		return "Would you really be happy if you had " + restOfStatement + "?";
   }
 }
